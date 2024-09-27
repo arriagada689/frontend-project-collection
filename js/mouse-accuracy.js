@@ -1,11 +1,14 @@
 const difficultyOptions = ['Easy', 'Normal', 'Hard', 'Insane']
+const integerDifficultyOptions = [690, 540, 440, 320]
 const sizeOptions = ['Tiny', 'Small', 'Medium', 'Large']
+const integerSizeOptions = ['h-[24px] w-[24px]', 'h-[48px] w-[48px]', 'h-[67px] w-[67px]', 'h-[75px] w-[75px]']
 const durationOptions = ['15 Seconds', '30 Seconds', '60 Seconds']
+const integerDurationOptions = [15000, 30000, 600000]
 
 let difficultyIndex = 1
 let sizeIndex = 2
 let durationIndex = 1
-let color = 'bg-red-500'
+let color = 'bg-red-500 hover:bg-red-400'
 
 const difficultyButtons = document.getElementById('difficulty-buttons')
 const difficultySpan = document.getElementById('difficulty-span')
@@ -70,8 +73,32 @@ Array.from(colorButtons.children).forEach((button) => {
 
 const startGameButton = document.getElementById('start-game-btn')
 const menuDiv = document.getElementById('menu-div')
+const body = document.body;
 
 startGameButton.addEventListener('click', () => {
     console.log(difficultyOptions[difficultyIndex], sizeOptions[sizeIndex], durationOptions[durationIndex], color);
     menuDiv.classList.add('hidden')
+
+    //start creating targets based on the size, speed, and color
+    const intervalId = setInterval(() => {
+        const target = document.createElement('div')
+        target.className = `${integerSizeOptions[sizeIndex]} rounded-full ${color}`
+
+        // Generate random positions for the target
+        const randomX = Math.random() * (window.innerWidth - 50);
+        const randomY = Math.random() * (window.innerHeight - 50);
+        target.style.position = 'absolute';
+        target.style.left = `${randomX}px`;
+        target.style.top = `${randomY}px`;
+
+        target.addEventListener('click', () => {
+            target.remove()
+        })
+
+        body.appendChild(target)
+    }, integerDifficultyOptions[difficultyIndex])
+
+    setTimeout(() => {
+        clearInterval(intervalId);
+    }, integerDurationOptions[durationIndex]);
 })
