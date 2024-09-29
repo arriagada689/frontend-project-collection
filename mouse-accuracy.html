@@ -6,7 +6,12 @@
     <title>Mouse Accuracy</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body class="h-screen flex flex-col items-center">
+<body class="h-screen flex flex-col">
+
+    <!--Navbar-->
+    <div class="h-[60px] w-full flex items-center justify-center bg-red-400">
+        <a href="mouse-accuracy.html" class="font-bold text-2xl">Mouse Accuracy Game</a>
+    </div>
 
     <!--Menu-->
     <div id="menu-div">
@@ -39,7 +44,7 @@
         <div class="flex justify-between w-[200px] border">
             <span>Duration</span>
             <div class="flex space-x-3">
-                <span id="duration-span">30 Seconds</span>
+                <span id="duration-span">15 Seconds</span>
                 <div class="flex space-x-3" id="duration-buttons">
                     <button><i class="fa-solid fa-angle-left"></i></button>
                     <button><i class="fa-solid fa-angle-right"></i></button>
@@ -61,6 +66,52 @@
 
         <!--Start game button-->
         <button id="start-game-btn">Start Game</button>
+    </div>
+
+    <!--Target Area-->
+    <div class="hidden flex-grow bg-black relative" id="target-area">
+        <div class="absolute right-2 top-1/2 transform -translate-y-1/2 flex flex-col">
+            <div class="text-white">Time</div>
+            <div class="text-white" id="time"></div>
+            <div class="text-white">Points</div>
+            <div class="text-white" id="score">0</div>
+        </div>
+    </div>
+
+    <!--Scoreboard-->
+    <div class="hidden" id="scoreboard">
+        <div class="text-bold text-3xl">Scoreboard</div>
+        <div class="border w-fit" id="settings"></div>
+        <div class="border w-fit">
+            <div class="text-xl font-bold">Targets</div>
+            <div id="targets"></div>
+            <div id="target-hits"></div>
+            <div id="target-misses"></div>
+            <div id="target-per-second"></div>
+        </div>
+        <div class="border w-fit">
+            <div class="text-xl font-bold">Clicks</div>
+            <div id="clicks"></div>
+            <div id="click-hits"></div>
+            <div id="click-misses"></div>
+            <div id="click-per-second"></div>
+        </div>
+        <div class="border w-fit">
+            <div class="text-xl font-bold">Total Score</div>
+            <div id="total-score"></div>
+        </div>
+        <div class="border w-fit">
+            <div class="text-xl font-bold">Target Efficiency</div>
+            <div id="efficiency-percentage"></div>
+            <div id="efficiency-ratio"></div>
+            <div>Hits/Target</div>
+        </div>
+        <div class="border w-fit">
+            <div class="text-xl font-bold">Click Accuracy</div>
+            <div id="accuracy-percentage"></div>
+            <div id="accuracy-ratio"></div>
+            <div>Hits/Clicks</div>
+        </div>
     </div>
 
     <div class="hidden h-[50px] w-[50px] h-[24px] w-[24px] h-[48px] w-[48px] h-[67px] w-[67px] h-[75px] w-[75px]"></div>
