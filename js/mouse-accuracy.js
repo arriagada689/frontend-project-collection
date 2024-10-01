@@ -108,7 +108,17 @@ startGameButton.addEventListener('click', () => {
     targetArea.addEventListener('click', (e) => {
         e.preventDefault()
         misses += 1
-        console.log(misses);
+        const clickX = e.clientX - targetArea.getBoundingClientRect().left;
+        const clickY = e.clientY - targetArea.getBoundingClientRect().top;
+        const hitmarker = document.createElement('i');
+        hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm`;
+        hitmarker.style.left = `${clickX}px`;
+        hitmarker.style.top = `${clickY}px`;
+        targetArea.appendChild(hitmarker);
+        setTimeout(() => {
+            hitmarker.classList.add('opacity-0');
+            setTimeout(() => hitmarker.remove(), 800);
+        }, 500);
     })
 
     //start creating targets based on the size, speed, and color
@@ -167,6 +177,7 @@ const clicks = document.getElementById('clicks')
 const clickHits = document.getElementById('click-hits')
 const clickMisses = document.getElementById('click-misses')
 const clickPerSecond = document.getElementById('click-per-second')
+const restartGameButton = document.getElementById('restart-game-btn')
 
 function handleEndGame(){
     targetArea.classList.add('hidden')
@@ -204,3 +215,36 @@ function handleEndGame(){
     settingsDiv.appendChild(targetSize)
     settingsDiv.appendChild(duration)
 }
+
+restartGameButton.addEventListener('click', () => {
+    localStorage.setItem('restartGame', 'true')
+
+    const settings = {
+        durationIndex: durationIndex,
+        difficultyIndex: difficultyIndex,
+        sizeIndex: sizeIndex,
+        color: color
+    };
+    localStorage.setItem('settings', JSON.stringify(settings));
+    window.location.reload()
+})
+
+window.addEventListener('load', () => {
+    if(localStorage.getItem('restartGame') === 'true') {
+        localStorage.removeItem('restartGame');
+
+        //set variables to the settings in local storage
+        const storedSettings = JSON.parse(localStorage.getItem('settings'));
+
+        if(storedSettings){
+            durationIndex = storedSettings.durationIndex;
+            difficultyIndex = storedSettings.difficultyIndex;
+            sizeIndex = storedSettings.sizeIndex;
+            color = storedSettings.color;
+        }
+        
+        if (startGameButton) {
+            startGameButton.click();
+        }
+    }
+})
