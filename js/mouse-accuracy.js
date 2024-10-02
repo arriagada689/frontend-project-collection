@@ -16,6 +16,8 @@ let time
 let totalTargets = 0
 let hits = 0
 let misses = 0
+let endGame = false
+let countdownValue = 3
 
 const difficultyButtons = document.getElementById('difficulty-buttons')
 const difficultySpan = document.getElementById('difficulty-span')
@@ -84,74 +86,99 @@ const targetArea = document.getElementById('target-area')
 const scoreDiv = document.getElementById('score')
 const timeDiv = document.getElementById('time')
 const scoreboard = document.getElementById('scoreboard')
+const endSessionBtn = document.getElementById('end-session-btn')
+const pregameCountdown = document.getElementById('pregame-countdown')
 
 let targetAreaHeight, targetAreaWidth
 
+
 startGameButton.addEventListener('click', () => {
+    //pre game countdown
+    pregameCountdown.classList.remove('hidden')
+    pregameCountdown.classList.add('flex')
     menuDiv.classList.add('hidden')
-    targetArea.classList.remove('hidden')
+    pregameCountdown.innerText = `Starting in ${countdownValue}`
 
-    //initial time
-    time = integerDurationOptions[durationIndex] / 1000
-    timeDiv.innerText = time
-
-    //countdown
-    const countdown = setInterval(() => {
-        if (time > 0) {
-            time--; 
-            timeDiv.innerText = time
-        } else {
-            clearInterval(countdown); 
-        }
-    }, 1000);
-
-    targetArea.addEventListener('click', (e) => {
-        e.preventDefault()
-        misses += 1
-        const clickX = e.clientX - targetArea.getBoundingClientRect().left;
-        const clickY = e.clientY - targetArea.getBoundingClientRect().top;
-        const hitmarker = document.createElement('i');
-        hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm`;
-        hitmarker.style.left = `${clickX}px`;
-        hitmarker.style.top = `${clickY}px`;
-        targetArea.appendChild(hitmarker);
-        setTimeout(() => {
-            hitmarker.classList.add('opacity-0');
-            setTimeout(() => hitmarker.remove(), 800);
-        }, 500);
-    })
-
-    //start creating targets based on the size, speed, and color
-    const intervalId = setInterval(() => {
-        const target = document.createElement('div')
-        target.className = `${integerSizeOptions[sizeIndex]} rounded-full ${color}`
-
-        // Generate random positions for the target
-        targetAreaHeight = targetArea.getBoundingClientRect().height;
-        targetAreaWidth = targetArea.getBoundingClientRect().width;
-        const randomY = randomInteger(1, targetAreaHeight - 80)
-        const randomX = randomInteger(1, targetAreaWidth - 80)
-        target.style.position = 'absolute';
-        target.style.left = `${randomX}px`;
-        target.style.top = `${randomY}px`;
-
-        target.addEventListener('click', (e) => {
-            e.stopPropagation()
-            target.remove()
-            score += 2
-            scoreDiv.textContent = score
-            hits += 1
-        })
+    const countdownInterval = setInterval(() => {
+        countdownValue--; 
         
+        if (countdownValue > 0) {
+            pregameCountdown.innerText = `Starting in ${countdownValue}`;
+        } else {
+            clearInterval(countdownInterval); 
+            pregameCountdown.classList.add('hidden');
 
-        targetArea.appendChild(target)
-        totalTargets += 1
-    }, integerDifficultyOptions[difficultyIndex])
+            endGame = false
+            
+            targetArea.classList.remove('hidden')
 
-    setTimeout(() => {
-        clearInterval(intervalId);
-        handleEndGame()
-    }, integerDurationOptions[durationIndex]);
+            //initial time
+            time = integerDurationOptions[durationIndex] / 1000
+            timeDiv.innerText = time
+
+            //add end session button
+            endSessionBtn.classList.remove('hidden')
+
+            //countdown
+            const countdown = setInterval(() => {
+                if (time > 0) {
+                    time--; 
+                    timeDiv.innerText = time
+                } else {
+                    clearInterval(countdown); 
+                }
+            }, 1000);
+
+            targetArea.addEventListener('click', (e) => {
+                e.preventDefault()
+                misses += 1
+                const clickX = e.clientX - targetArea.getBoundingClientRect().left;
+                const clickY = e.clientY - targetArea.getBoundingClientRect().top;
+                const hitmarker = document.createElement('i');
+                hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm`;
+                hitmarker.style.left = `${clickX}px`;
+                hitmarker.style.top = `${clickY}px`;
+                targetArea.appendChild(hitmarker);
+                setTimeout(() => {
+                    hitmarker.classList.add('opacity-0');
+                    setTimeout(() => hitmarker.remove(), 800);
+                }, 500);
+            })
+
+            //start creating targets based on the size, speed, and color
+            const intervalId = setInterval(() => {
+                const target = document.createElement('div')
+                target.className = `${integerSizeOptions[sizeIndex]} rounded-full ${color}`
+
+                // Generate random positions for the target
+                targetAreaHeight = targetArea.getBoundingClientRect().height;
+                targetAreaWidth = targetArea.getBoundingClientRect().width;
+                const randomY = randomInteger(1, targetAreaHeight - 80)
+                const randomX = randomInteger(1, targetAreaWidth - 80)
+                target.style.position = 'absolute';
+                target.style.left = `${randomX}px`;
+                target.style.top = `${randomY}px`;
+
+                target.addEventListener('click', (e) => {
+                    e.stopPropagation()
+                    target.remove()
+                    score += 2
+                    scoreDiv.textContent = score
+                    hits += 1
+                })
+
+                targetArea.appendChild(target)
+                totalTargets += 1
+            }, integerDifficultyOptions[difficultyIndex])
+
+            setTimeout(() => {
+                if(!endGame){
+                    clearInterval(intervalId);
+                    handleEndGame()
+                }
+            }, integerDurationOptions[durationIndex]);
+                }
+            }, 1000);
 })
 
 function randomInteger(min, max) {
@@ -180,7 +207,9 @@ const clickPerSecond = document.getElementById('click-per-second')
 const restartGameButton = document.getElementById('restart-game-btn')
 
 function handleEndGame(){
+    endGame = true
     targetArea.classList.add('hidden')
+    endSessionBtn.classList.add('hidden')
     scoreboard.classList.remove('hidden')
 
     //handle settings
@@ -247,4 +276,8 @@ window.addEventListener('load', () => {
             startGameButton.click();
         }
     }
+})
+
+endSessionBtn.addEventListener('click', () => {
+    handleEndGame()
 })
