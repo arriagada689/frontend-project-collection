@@ -74,9 +74,30 @@ durationButtons.children[1].addEventListener('click', () => {
 })
 
 const colorButtons = document.getElementById('color-buttons')
+
 Array.from(colorButtons.children).forEach((button) => {
+    //set initial selected circle
+    if(button.value === color){
+        //create bigger circle outline
+        const biggerCircle = document.createElement('div')
+        biggerCircle.className = 'absolute border-2 w-[33px] h-[33px] rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'
+        button.appendChild(biggerCircle)
+    }
     button.addEventListener('click', () => {
         color = button.value
+
+        //remove big circle from each
+        Array.from(colorButtons.children).forEach((btn) => {
+            const bigCircle = btn.querySelector('.border-2');
+            if (bigCircle) {
+                bigCircle.remove();
+            }
+        });
+        
+        // add circle to the clicked circle
+        const biggerCircle = document.createElement('div');
+        biggerCircle.className = 'absolute border-2 w-[33px] h-[33px] rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2';
+        button.appendChild(biggerCircle);
     });
 });
 
@@ -88,9 +109,9 @@ const timeDiv = document.getElementById('time')
 const scoreboard = document.getElementById('scoreboard')
 const endSessionBtn = document.getElementById('end-session-btn')
 const pregameCountdown = document.getElementById('pregame-countdown')
+const navbar = document.getElementById('navbar')
 
 let targetAreaHeight, targetAreaWidth
-
 
 startGameButton.addEventListener('click', () => {
     //pre game countdown
@@ -118,6 +139,8 @@ startGameButton.addEventListener('click', () => {
 
             //add end session button
             endSessionBtn.classList.remove('hidden')
+            navbar.classList.remove('grid-cols-1')
+            navbar.classList.add('grid-cols-2')
 
             //countdown
             const countdown = setInterval(() => {
@@ -211,16 +234,21 @@ function handleEndGame(){
     targetArea.classList.add('hidden')
     endSessionBtn.classList.add('hidden')
     scoreboard.classList.remove('hidden')
+    navbar.classList.remove('grid-cols-2')
+    navbar.classList.add('grid-cols-1')
 
     //handle settings
     const difficulty = document.createElement('div')
-    difficulty.innerText = 'Difficulty: ' + difficultyOptions[difficultyIndex]
+    difficulty.className = 'text-gray-300 font-semibold text-xl'
+    difficulty.innerHTML = '<i class="fa-solid fa-chart-simple text-red-500 mr-4 text-2xl"></i>' + difficultyOptions[difficultyIndex]
     const targetSize = document.createElement('div')
-    targetSize.innerText = 'Size: ' + sizeOptions[sizeIndex]
+    targetSize.className = 'text-gray-300 font-semibold text-xl'
+    targetSize.innerHTML = '<i class="fa-regular fa-circle-dot text-red-500 mr-4 text-2xl"></i>' + sizeOptions[sizeIndex]
     const duration = document.createElement('div')
-    duration.innerText = 'Duration: ' + durationOptions[durationIndex]
+    duration.className = 'text-gray-300 font-semibold text-xl'
+    duration.innerHTML = '<i class="fa-solid fa-stopwatch text-red-500 mr-4 text-2xl"></i>' + durationOptions[durationIndex]
 
-    totalScore.innerText = 'Total Score: ' + score
+    totalScore.innerText = score
 
     efficiencyPercentage.innerText = Math.round((hits / totalTargets) * 100) + '%';
     efficiencyRatio.innerText = hits + '/' + totalTargets + ' Total'
