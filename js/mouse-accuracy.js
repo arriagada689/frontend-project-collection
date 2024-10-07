@@ -184,7 +184,18 @@ startGameButton.addEventListener('click', () => {
 
                 target.addEventListener('click', (e) => {
                     e.stopPropagation()
-                    target.remove()
+
+                    //give gray outline
+                    const colorClasses = color.split(' ')
+                    target.classList.remove(...colorClasses)
+                    target.classList.add('border', 'border-gray-600', 'opacity-100')
+                    //fade out
+                    target.style.transition = 'opacity 0.5s ease';
+                    target.style.opacity = '0';
+
+                    setTimeout(() => {
+                        target.remove();
+                    }, 500);
                     score += 2
                     scoreDiv.textContent = score
                     hits += 1
