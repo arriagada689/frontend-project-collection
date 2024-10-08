@@ -9,10 +9,14 @@
 <body class="h-screen flex flex-col">
 
     <!--Navbar-->
-    <div class="h-[60px] w-full grid grid-cols-1 md:grid-cols-3 items-center bg-gray-900 text-white" id="navbar">
-        <div class="hidden md:block"></div>
-        <a href="mouse-accuracy.html" class="font-bold text-xl md:text-2xl justify-self-center text-center"><i class="fa-solid fa-computer-mouse mr-3"></i>Mouse Accuracy Game</a>
-        <button id="end-session-btn" class="hidden bg-red-500 text-white w-fit py-1 px-4 font-semibold rounded-2xl text-base inline-flex items-center justify-self-center"><i class="fa-solid fa-x mr-2 text-sm"></i>End Session</button>
+    <div class="h-[60px] px-5 flex justify-between items-center bg-gray-900 text-white flex-shrink-0" id="navbar">
+        <a href="/"><i class="fa-solid fa-house text-2xl"></i></a>
+        <a href="mouse-accuracy.html" class="font-bold text-xl md:text-2xl justify-self-center text-center flex items-center"><i class="fa-solid fa-computer-mouse text-2xl mr-3"></i><span class="hidden md:flex">Mouse Accuracy Game</span></a>
+        <button id="end-session-btn" class="hidden bg-red-500 text-white w-fit py-2 px-2 md:px-4 font-semibold rounded-2xl text-base inline-flex items-center justify-center">
+            <i class="fa-solid fa-x text-sm mr-0 md:mr-2"></i>
+            <span class="hidden md:flex">End Session</span>
+        </button>
+        <div id="temp-div" class="w-[26px]"></div>
     </div>
 
     <!--Menu-->
@@ -80,8 +84,9 @@
     </div>
 
     <!--Pre game countdown-->
-    <div id="pregame-countdown" class="hidden flex-grow items-center justify-center">
-        
+    <div id="pregame-countdown" class="hidden flex-col flex-grow items-center justify-center text-3xl font-bold">
+        <i class="fa-solid fa-computer-mouse text-6xl text-red-500"></i>
+        <span id="pregame-countdown-num"></span>
     </div>
 
     <!--Scoreboard-->

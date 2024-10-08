@@ -109,7 +109,9 @@ const timeDiv = document.getElementById('time')
 const scoreboard = document.getElementById('scoreboard')
 const endSessionBtn = document.getElementById('end-session-btn')
 const pregameCountdown = document.getElementById('pregame-countdown')
+const pregameCountdownNum = document.getElementById('pregame-countdown-num')
 const navbar = document.getElementById('navbar')
+const tempDiv = document.getElementById('temp-div')
 
 let targetAreaHeight, targetAreaWidth
 
@@ -118,13 +120,13 @@ startGameButton.addEventListener('click', () => {
     pregameCountdown.classList.remove('hidden')
     pregameCountdown.classList.add('flex')
     menuDiv.classList.add('hidden')
-    pregameCountdown.innerText = `Starting in ${countdownValue}`
+    pregameCountdownNum.innerText = ` Starting in ${countdownValue}...`
 
     const countdownInterval = setInterval(() => {
         countdownValue--; 
         
         if (countdownValue > 0) {
-            pregameCountdown.innerText = `Starting in ${countdownValue}`;
+            pregameCountdownNum.innerText = `Starting in ${countdownValue}...`;
         } else {
             clearInterval(countdownInterval); 
             pregameCountdown.classList.add('hidden');
@@ -138,6 +140,7 @@ startGameButton.addEventListener('click', () => {
             timeDiv.innerText = time
 
             //add end session button
+            tempDiv.classList.add('hidden')
             endSessionBtn.classList.remove('hidden')
             navbar.classList.remove('grid-cols-1')
             navbar.classList.add('grid-cols-2')
@@ -245,8 +248,7 @@ function handleEndGame(){
     targetArea.classList.add('hidden')
     endSessionBtn.classList.add('hidden')
     scoreboard.classList.remove('hidden')
-    navbar.classList.remove('grid-cols-2')
-    navbar.classList.add('grid-cols-1')
+    tempDiv.classList.remove('hidden')
 
     //handle settings
     const difficulty = document.createElement('div')
