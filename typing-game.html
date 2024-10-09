@@ -6,16 +6,18 @@
     <title>Mini Project Collection</title> 
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body class="flex flex-col h-screen bg-gray-100">
+<body class="flex flex-col h-screen bg-gray-100 dark:bg-gray-800">
     <!--Navbar-->
-    <div id="navbar" class="h-[60px] flex items-center justify-center bg-red-400">
+    <div id="navbar" class="h-[60px] px-5 flex justify-between items-center justify-center bg-red-400">
+        <a href="/"><i class="fa-solid fa-house text-2xl"></i></a>
         <a href="typing-game.html" class="font-bold text-2xl">Typing Game</a>
+        <div id="dark-mode-toggle" class="w-[26px]"></div>
     </div>
 
     <!--middle portion-->
     <div class="flex flex-col items-center md:justify-center flex-grow">
         <div class="flex flex-col space-y-4 mt-3 md:mt-0" id="start-div">
-            <div class="font-bold text-2xl text-center">Game Modes</div>
+            <div class="font-bold text-2xl text-center dark:text-white">Game Modes</div>
             <div class="flex flex-wrap justify-center text-white font-semibold gap-3">
                 
                 <a id="menu-btn" href="typing-game.html" class="flex flex-col items-center w-[320px] bg-red-400 px-2 py-3 text-2xl rounded-xl">
@@ -39,7 +41,7 @@
             <button id="start-btn" class="bg-blue-300 m-3 md:m-0 p-2 font-semibold text-lg md:text-xl">Start Game</button>
         </div>
         
-        <div id="main-div" class="hidden flex-col md:w-[50%] m-3 md:m-0 border border-gray-800  pb-7 px-2 space-y-4 md:space-y-8 bg-white">
+        <div id="main-div" class="hidden flex-col md:w-[50%] m-3 md:m-0 border border-gray-800  pb-7 px-2 space-y-4 md:space-y-8 bg-white dark:bg-gray-600 dark:text-white">
             <div id="done-text" class="opacity-0 transition-opacity duration-700 ease-in-out font-bold text-3xl text-center pt-4 md:pt-7">Done!</div>
             <div class="font-semibold text-lg">Type the text below:</div>
             <div class="flex gap-x-3">
@@ -48,7 +50,7 @@
                 </div>
                 <div id="wpm" class="text-end font-bold text-xl">0 wpm</div>
             </div>
-            <div class="bg-gray-100 border border-gray-800 p-4">
+            <div class="bg-gray-100 dark:bg-gray-500 border border-gray-800 p-4">
                 <div class="relative">
                     <div class="flex flex-wrap text-xl w-full border-black font-semibold" id="words"></div>
                     <div id="start-indicator" class="absolute left-0 top-0 transform -translate-x-full text-green-600 text-3xl"><i class="fa-solid fa-right-long"></i></div>
@@ -73,6 +75,7 @@
     <div class="hidden text-green-500 bg-red-500 h-[28px] inline-block w-[2px] bg-black relative absolute left-0 right-0 top-0 opacity-100 scale-100 w-[7px]"></div>
 
     <script type="module" src="js/typing-game.js"></script>
+    <script type="module" src="js/darkMode.js"></script>
     <script src="https://kit.fontawesome.com/d1384d0569.js" crossorigin="anonymous"></script>
 </body>
 </html>
