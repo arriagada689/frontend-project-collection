@@ -111,7 +111,6 @@ const endSessionBtn = document.getElementById('end-session-btn')
 const pregameCountdown = document.getElementById('pregame-countdown')
 const pregameCountdownNum = document.getElementById('pregame-countdown-num')
 const navbar = document.getElementById('navbar')
-const tempDiv = document.getElementById('temp-div')
 
 let targetAreaHeight, targetAreaWidth
 
@@ -140,7 +139,6 @@ startGameButton.addEventListener('click', () => {
             timeDiv.innerText = time
 
             //add end session button
-            tempDiv.classList.add('hidden')
             endSessionBtn.classList.remove('hidden')
             navbar.classList.remove('grid-cols-1')
             navbar.classList.add('grid-cols-2')
@@ -155,13 +153,13 @@ startGameButton.addEventListener('click', () => {
                 }
             }, 1000);
 
-            targetArea.addEventListener('click', (e) => {
+            targetArea.addEventListener('mousedown', (e) => {
                 e.preventDefault()
                 misses += 1
                 const clickX = e.clientX - targetArea.getBoundingClientRect().left;
                 const clickY = e.clientY - targetArea.getBoundingClientRect().top;
                 const hitmarker = document.createElement('i');
-                hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm`;
+                hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm dark:text-white`;
                 hitmarker.style.left = `${clickX}px`;
                 hitmarker.style.top = `${clickY}px`;
                 targetArea.appendChild(hitmarker);
@@ -185,13 +183,13 @@ startGameButton.addEventListener('click', () => {
                 target.style.left = `${randomX}px`;
                 target.style.top = `${randomY}px`;
 
-                target.addEventListener('click', (e) => {
+                target.addEventListener('mousedown', (e) => {
                     e.stopPropagation()
 
                     //give gray outline
                     const colorClasses = color.split(' ')
                     target.classList.remove(...colorClasses)
-                    target.classList.add('border', 'border-gray-600', 'opacity-100')
+                    target.classList.add('border', 'border-gray-600', 'opacity-100', 'dark:border-gray-400')
                     //fade out
                     target.style.transition = 'opacity 0.5s ease';
                     target.style.opacity = '0';
@@ -248,7 +246,6 @@ function handleEndGame(){
     targetArea.classList.add('hidden')
     endSessionBtn.classList.add('hidden')
     scoreboard.classList.remove('hidden')
-    tempDiv.classList.remove('hidden')
 
     //handle settings
     const difficulty = document.createElement('div')
@@ -321,4 +318,38 @@ window.addEventListener('load', () => {
 
 endSessionBtn.addEventListener('click', () => {
     handleEndGame()
+})
+
+const darkModeToggle = document.getElementById('dark-mode-toggle')
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+
+    //add sun icon
+    const sunIcon = document.createElement('i')
+    sunIcon.className = 'fa-solid fa-sun text-2xl'
+    darkModeToggle.appendChild(sunIcon)
+} else {
+    document.documentElement.classList.remove('dark')
+    const moonIcon = document.createElement('i')
+    moonIcon.className = 'fa-solid fa-moon text-2xl'
+    darkModeToggle.appendChild(moonIcon)
+}
+
+darkModeToggle.addEventListener('click', () => {
+    const isDarkMode = document.documentElement.classList.contains('dark');
+    if(isDarkMode){
+        document.documentElement.classList.remove('dark');
+        localStorage.theme = 'light';
+        darkModeToggle.innerHTML = ''; 
+        const moonIcon = document.createElement('i');
+        moonIcon.className = 'fa-solid fa-moon text-2xl';
+        darkModeToggle.appendChild(moonIcon);
+    } else {
+        document.documentElement.classList.add('dark');
+        localStorage.theme = 'dark';
+        darkModeToggle.innerHTML = '';
+        const sunIcon = document.createElement('i');
+        sunIcon.className = 'fa-solid fa-sun text-2xl';
+        darkModeToggle.appendChild(sunIcon);
+    }
 })
