@@ -153,6 +153,7 @@ startGameButton.addEventListener('click', () => {
                 }
             }, 1000);
 
+            //handles miss clicks
             targetArea.addEventListener('mousedown', (e) => {
                 e.preventDefault()
                 misses += 1
@@ -218,7 +219,7 @@ startGameButton.addEventListener('click', () => {
 
 function randomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
+}
 
 window.addEventListener('resize', () => {
     targetAreaWidth = targetArea.getBoundingClientRect().width;
