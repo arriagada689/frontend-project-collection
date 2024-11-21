@@ -20,17 +20,9 @@ playArea.addEventListener('mousedown', (e) => {
     }, 500);
 })
 
-const intervalId = setInterval(() => {
-    if(targetCount < 5){
-
-        addTarget()
-
-        
-    } else {
-
-    }
-
-}, difficulty)
+for(let i = 0; i < 5; i++){
+    addTarget()
+}
 
 function addTarget(){
     //create target
@@ -48,6 +40,9 @@ function addTarget(){
 
     target.addEventListener('mousedown', (e) => {
         e.stopPropagation()
+
+        // Disable further clicks on this target
+        target.style.pointerEvents = 'none';
 
         //give gray outline
         const colorClasses = color.split(' ')

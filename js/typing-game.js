@@ -154,8 +154,12 @@ input.addEventListener('keydown', (e) => {
 
 input.addEventListener('keydown', () => {
     if(wrongCounter > 0){
+        input.classList.remove('dark:bg-gray-800')
         input.classList.add('bg-red-500')
     } else {
+        if(localStorage.theme === 'dark'){
+            input.classList.add('dark:bg-gray-800')
+        }
         input.classList.remove('bg-red-500')
     }
 })

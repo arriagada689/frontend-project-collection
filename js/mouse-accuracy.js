@@ -187,6 +187,9 @@ startGameButton.addEventListener('click', () => {
                 target.addEventListener('mousedown', (e) => {
                     e.stopPropagation()
 
+                    // Disable further clicks on this target
+                    target.style.pointerEvents = 'none';
+
                     //give gray outline
                     const colorClasses = color.split(' ')
                     target.classList.remove(...colorClasses)
