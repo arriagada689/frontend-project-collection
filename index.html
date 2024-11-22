@@ -16,17 +16,24 @@
     </div>
 
     <!--Typing Game-->
-    <div class="border p-2 w-2/3">
+    <div class="border p-2 w-2/3 flex flex-col">
         <div class="font-bold">Typing Game</div>
         <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae magnam quibusdam nisi cum minus ab delectus, accusamus enim ipsam possimus!</div>
-        <div class="border h-[300px] relative" id="typing-animation">
+        <div class="border h-[300px] relative flex-1" id="typing-animation">
             <div id="words"></div>
-            <input type="text" id="input-box" class="border-2 p-2 text-lg w-full mt-3 font-semibold dark:bg-gray-800" autocomplete="off">
+            <div id="input-box" class="border-2 p-2 text-lg w-full mt-3 font-semibold dark:bg-gray-800 h-[48px]"></div>
+
+            <!--Keyboard-->
+            <div id="keyboard" class="grid grid-rows-5 gap-2 w-full bg-gray-300 p-1" style="grid-template-columns: repeat(15, minmax(0, 1fr));">
+
+            </div>
         </div>
     </div>
 
     <a href="typing-game.html">Typing Game</a>
     <a href="mouse-accuracy.html">Mouse Accuracy Game</a>
+
+    <div class="hidden bg-gray-300 p-4 text-center rounded shadow col-span-2 col-span-3 col-span-7"></div>
 
     <script src="js/homepage/sub-mouse-accuracy.js" type="module"></script>
     <script src="js/homepage/sub-typing-game.js" type="module"></script>
