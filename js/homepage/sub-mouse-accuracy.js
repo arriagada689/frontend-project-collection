@@ -20,9 +20,12 @@ playArea.addEventListener('mousedown', (e) => {
     }, 500);
 })
 
-for(let i = 0; i < 5; i++){
-    addTarget()
+function loadTargets() {
+    for(let i = 0; i < 5; i++){
+        addTarget()
+    }
 }
+loadTargets()
 
 function addTarget(){
     //create target
@@ -65,8 +68,10 @@ function addTarget(){
 }
 
 window.addEventListener('resize', () => {
-    targetAreaWidth = targetArea.getBoundingClientRect().width;
-    windowHeight = targetArea.getBoundingClientRect().height;
+    //clear current targets
+    playArea.innerHTML = ''
+    //load more targets with new height and width
+    loadTargets()
 })
 
 function randomInteger(min, max) {

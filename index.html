@@ -6,21 +6,30 @@
     <title>Mini Project Collection</title> 
     <link href="css/main.css" rel="stylesheet">
 </head>
-<body class="flex flex-col items-center">
-    
+<body class="flex flex-col items-center bg-zinc-900 text-white gap-y-2 mx-2 md:mx-0">
+    <div class="font-bold text-2xl my-5">Mini Project Collection</div>
+
     <!--Mouse Accuracy Game-->
-    <div class="border p-2 w-2/3">
-        <div class="font-bold">Mouse Accuracy Game</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae magnam quibusdam nisi cum minus ab delectus, accusamus enim ipsam possimus!</div>
-        <div id="play-area" class="border h-[300px] relative"></div>
+    <div class="shadow-black shadow-md px-8 py-4 w-full md:w-2/3 flex flex-col space-y-2 bg-zinc-700">
+        <div class="font-bold text-2xl">Mouse Accuracy Game</div>
+        <ul class="list-disc pl-5">
+            <li>Customize gameplay features such as target speed, size, and game duration.</li>
+            <li>Based on the game <a class="text-blue-500 hover:underline" href="https://mouseaccuracy.com/">mouseaccuracy.com</a></li>
+        </ul>
+        <a href="mouse-accuracy.html" class="bg-blue-500 rounded-xl text-white p-2 hover:bg-blue-400 font-semibold w-fit">See Full Project</a>
+        <div id="play-area" class="border border-black rounded-md bg-zinc-600 h-[250px] relative"></div>
     </div>
 
     <!--Typing Game-->
-    <div class="border p-2 w-2/3 flex flex-col">
-        <div class="font-bold">Typing Game</div>
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae magnam quibusdam nisi cum minus ab delectus, accusamus enim ipsam possimus!</div>
-        <div class="border h-[300px] relative flex-1" id="typing-animation">
-            <div id="words"></div>
+    <div class="shadow-black shadow-md px-8 py-4 w-full md:w-2/3 flex flex-col space-y-2 bg-zinc-700">
+        <div class="font-bold text-2xl">Typing Game</div>
+        <ul class="list-disc pl-5">
+            <li>Measure and increase your typing speed by typing randomly generated words, sets of numbers, or repeating words.</li>
+            <li>Based on the game <a class="text-blue-500 hover:underline" href="https://play.typeracer.com/">play.typeracer.com</a></li>
+        </ul>
+        <a href="typing-game.html" class="bg-blue-500 rounded-xl text-white p-2 hover:bg-blue-400 font-semibold w-fit">See Full Project</a>
+        <div class="border border-black rounded-md h-[250px] relative flex-1 p-2 bg-zinc-600" id="typing-animation">
+            <div id="words" class="text-lg font-semibold"></div>
             <div id="input-box" class="border-2 p-2 text-lg w-full mt-3 font-semibold dark:bg-gray-800 h-[48px]"></div>
 
             <!--Keyboard-->
@@ -29,9 +38,6 @@
             </div>
         </div>
     </div>
-
-    <a href="typing-game.html">Typing Game</a>
-    <a href="mouse-accuracy.html">Mouse Accuracy Game</a>
 
     <div class="hidden bg-gray-300 p-4 text-center rounded shadow col-span-2 col-span-3 col-span-7"></div>
 
