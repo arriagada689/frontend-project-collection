@@ -50,7 +50,7 @@ function addTarget(){
         //give gray outline
         const colorClasses = color.split(' ')
         target.classList.remove(...colorClasses)
-        target.classList.add('border', 'border-gray-600', 'opacity-100', 'dark:border-gray-400')
+        target.classList.add('border', 'border-white', 'opacity-100', 'dark:border-gray-400')
         //fade out
         target.style.transition = 'opacity 0.5s ease';
         target.style.opacity = '0';

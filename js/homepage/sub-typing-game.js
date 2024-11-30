@@ -117,7 +117,7 @@ function createKeyboard() {
     keyboardArr.forEach(key => {
         const keyDiv = document.createElement('div')
         keyDiv.textContent = key === 'empty' || key === 'em' || key === 'triple' ? '' : key
-        keyDiv.className = 'bg-white p-1 text-center rounded ';
+        keyDiv.className = 'bg-white p-1 text-center rounded h-[30px]';
 
         //set col span for big keys
         if(key === 'back' || key === 'Tab' || key === 'Caps' || key === 'Enter' || key === 'empty'){
