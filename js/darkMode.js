@@ -1,5 +1,10 @@
 const darkModeToggle = document.getElementById('dark-mode-toggle')
 if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    // Set theme in localStorage if it doesn't exist but system prefers dark mode
+    if (!localStorage.theme) {
+        localStorage.setItem('theme', 'dark');
+    }
+    
     document.documentElement.classList.add('dark')
 
     //add sun icon

@@ -720,6 +720,10 @@ video {
   width: 0px;
 }
 
+.w-\[160px\] {
+  width: 160px;
+}
+
 .w-\[1px\] {
   width: 1px;
 }
@@ -783,14 +787,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[180px\] {
-  width: 180px;
-}
-
-.w-\[160px\] {
-  width: 160px;
 }
 
 .flex-1 {
