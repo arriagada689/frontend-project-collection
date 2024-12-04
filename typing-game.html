@@ -42,7 +42,14 @@
         </div>
         
         <div id="main-div" class="hidden flex-col md:w-[50%] m-3 md:m-0 border border-gray-800  pb-7 px-2 space-y-4 md:space-y-8 bg-white dark:bg-gray-600 dark:text-white">
-            <div id="done-text" class="opacity-0 transition-opacity duration-700 ease-in-out font-bold text-3xl text-center pt-4 md:pt-7">Done!</div>
+            <div id="done-text" class="opacity-0 transition-opacity duration-700 ease-in-out font-bold text-3xl text-center pt-4 md:pt-7 flex flex-col items-center">
+                <div class="w-[160px]">
+                    <div class="mb-2">Done!</div>
+                    <div id="done-wpm" class="flex justify-between text-2xl"></div>
+                    <div id="done-time" class="flex justify-between text-2xl"></div>
+                    <div id="done-accuracy" class="flex justify-between text-2xl"></div>
+                </div>
+            </div>
             <div class="font-semibold text-lg">Type the text below:</div>
             <div class="flex gap-x-3">
                 <div class="border-2 border-black bg-white rounded-xl flex-grow">
@@ -72,7 +79,7 @@
         
     </div>
 
-    <div class="hidden text-green-500 bg-red-500 h-[28px] inline-block w-[2px] bg-black relative absolute left-0 right-0 top-0 opacity-100 scale-100 w-[7px]"></div>
+    <div class="hidden text-green-500 bg-red-500 h-[28px] inline-block w-[2px] bg-black relative absolute left-0 right-0 top-0 opacity-100 scale-100 w-[7px] dark:bg-white"></div>
 
     <script type="module" src="js/typing-game.js"></script>
     <script type="module" src="js/darkMode.js"></script>

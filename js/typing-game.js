@@ -10,6 +10,9 @@ const wpm = document.getElementById('wpm')
 const progressBar = document.getElementById('progress-bar')
 const goBackButton = document.getElementById('go-back-btn')
 const doneText = document.getElementById('done-text')
+const doneWpm = document.getElementById('done-wpm')
+const doneTime = document.getElementById('done-time')
+const doneAccuracy = document.getElementById('done-accuracy')
 const tryAgainButton = document.getElementById('try-again-btn')
 const newGameButton = document.getElementById('new-game-btn')
 const startIndicator = document.getElementById('start-indicator');
@@ -26,6 +29,7 @@ let wrongCounter = 0
 let tempIndex = 0 //used to grab the letter element with a word element
 let started = false
 let seconds = 0;
+let totalWrongCounter = 0
 
 function createWordElements(){
     words.innerHTML = ''
@@ -149,6 +153,7 @@ input.addEventListener('keydown', (e) => {
             tempIndex++
         }
         handleBar(currentWordIndex, tempIndex)
+        totalWrongCounter++
     }
 })
 
@@ -194,6 +199,8 @@ startButton.addEventListener('click', () => {
         wordStr = repeatingSet[Math.floor(Math.random() * repeatingSet.length)]
         wordsArray = wordStr.split(' ')
     }
+    // wordStr = 'hello there'
+    // wordsArray = wordStr.split(' ')
     createWordElements()
 
     startDiv.classList.add('hidden')
@@ -237,6 +244,14 @@ function endGame(){
     mainDiv.classList.remove('pt-14')
     // doneText.classList.remove('opacity')
     doneText.classList.add('opacity-100', 'scale-100');
+
+    //display wpm, time, accuracy
+    doneWpm.innerHTML = `<i class="fa-solid fa-keyboard"></i> ${wpm.textContent}`
+    let formattedTime = formatTime(seconds)
+    doneTime.innerHTML = `<i class="fa-solid fa-clock"></i> ${formattedTime}`
+    let accuracy = ((wordStr.length - totalWrongCounter) / wordStr.length)
+    let formattedAccuracy = formatPercentage(accuracy)
+    doneAccuracy.innerHTML = `<i class="fa-regular fa-circle-check"></i> ${formattedAccuracy}`
 }
 
 function handleBar(wordIndex, innerIndex){
@@ -253,13 +268,13 @@ function handleBar(wordIndex, innerIndex){
         const letterElement = words.children[wordIndex + 1]
         letterElement.classList.add('relative')
         letterElement.appendChild(bar)
-        bar.className = 'absolute h-[28px] w-[2px] bg-black left-0 top-0 caret-bar'
+        bar.className = 'absolute h-[28px] w-[2px] bg-black dark:bg-white left-0 top-0 caret-bar'
         bar.style.left = '-1px';
     } else {
         const letterElement = words.children[wordIndex].children[innerIndex]
         letterElement.classList.add('relative')
         letterElement.appendChild(bar)
-        bar.className = 'absolute h-[28px] w-[2px] bg-black left-0 top-0 caret-bar'
+        bar.className = 'absolute h-[28px] w-[2px] bg-black dark:bg-white left-0 top-0 caret-bar'
         bar.style.left = '-1px';
     }
 }
@@ -332,3 +347,14 @@ if(queryParams.gamemode === 'numbers'){
     navbar.classList.remove('bg-purple-400')
     navbar.classList.add('bg-red-400')
 }
+
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;   
+    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+}
+
+function formatPercentage(decimal) {
+    if (decimal >= 1) return '100%'; 
+    return `${(decimal * 100).toFixed(1)}%`;
+  }
