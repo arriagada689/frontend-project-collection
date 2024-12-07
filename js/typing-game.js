@@ -75,6 +75,7 @@ input.addEventListener('keydown', (e) => {
 
     // Ignore keys that do not match the valid pattern
     if (!validKeyPattern.test(currentKey) && currentKey !== 'Backspace' && currentKey !== ' ') {
+        e.preventDefault()
         return;
     }
     
