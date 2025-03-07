@@ -38,10 +38,10 @@
                     <i class="fa-solid fa-repeat text-5xl"></i>
                 </a>
             </div>
-            <button id="start-btn" class="bg-blue-300 m-3 md:m-0 p-2 font-semibold text-lg md:text-xl">Start Game</button>
+            <button id="start-btn" class="bg-blue-300 m-3 md:m-0 p-2 font-semibold text-lg md:text-xl rounded-md">Start Game</button>
         </div>
         
-        <div id="main-div" class="hidden flex-col md:w-[50%] m-3 md:m-0 border border-gray-800  pb-7 px-2 space-y-4 md:space-y-8 bg-white dark:bg-gray-600 dark:text-white">
+        <div id="main-div" class="hidden flex-col md:w-[50%] m-3 md:m-0 border border-gray-800 pb-7 px-3 space-y-4 md:space-y-8 bg-white dark:bg-gray-600 dark:text-white rounded-md">
             <div id="done-text" class="opacity-0 transition-opacity duration-700 ease-in-out font-bold text-3xl text-center pt-4 md:pt-7 flex flex-col items-center">
                 <div class="w-[160px]">
                     <div class="mb-2">Done!</div>
@@ -52,12 +52,12 @@
             </div>
             <div class="font-semibold text-lg">Type the text below:</div>
             <div class="flex gap-x-3">
-                <div class="border-2 border-black bg-white rounded-xl flex-grow">
+                <div class=" bg-white rounded-xl w-full">
                     <div id="progress-bar" class="h-full w-0 bg-blue-500 rounded-xl"></div>
                 </div>
-                <div id="wpm" class="text-end font-bold text-xl">0 wpm</div>
+                <div id="wpm" class="text-end font-bold text-xl text-nowrap">0 wpm</div>
             </div>
-            <div class="bg-gray-100 dark:bg-gray-500 border border-gray-800 p-4">
+            <div class="bg-gray-100 dark:bg-gray-500 border border-gray-800 p-4 rounded-md">
                 <div class="relative">
                     <div class="flex flex-wrap text-xl w-full border-black font-semibold" id="words"></div>
                     <div id="start-indicator" class="absolute left-0 top-0 transform -translate-x-full text-green-600 text-3xl"><i class="fa-solid fa-right-long"></i></div>
@@ -71,7 +71,7 @@
             </div>
             
             <div class="flex justify-between items-center">
-                <button id="go-back-btn" class="bg-orange-500 px-2 py-3 rounded-lg text-white font-semibold">Go Back</button>
+                <button id="go-back-btn" class="bg-orange-500 hover:bg-orange-400 px-2 py-3 rounded-lg text-white font-semibold">Go Back</button>
                 <button id="try-again-btn" class="hidden bg-tryAgain px-2 py-3 rounded-lg text-black font-semibold">Try Again</button>
                 <button id="new-game-btn" class="hidden bg-newGame px-2 py-3 rounded-lg text-white font-semibold">New Game</button>
             </div>
