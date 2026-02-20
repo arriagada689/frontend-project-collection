@@ -16,11 +16,9 @@ const cursorObject = {
     'cursor-custom-diamond': ['Diamond', 'cursor-diamond.png']
 }
 
-//check local storage for user's chosen cursor
-const savedCursor = localStorage.getItem("cursor");
-if (savedCursor) {
-    setCursor(savedCursor);
-}
+//check local storage for user's chosen cursor and set initial cursor and display
+const savedCursor = localStorage.getItem("cursor") || 'cursor-custom-pointer'
+setCursor(savedCursor);
 
 function setCursor(cursorClass) {
     localStorage.setItem("cursor", cursorClass);
