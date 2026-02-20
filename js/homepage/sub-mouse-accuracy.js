@@ -10,7 +10,7 @@ playArea.addEventListener('mousedown', (e) => {
     const clickX = e.clientX - playArea.getBoundingClientRect().left;
     const clickY = e.clientY - playArea.getBoundingClientRect().top;
     const hitmarker = document.createElement('i');
-    hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm dark:text-white`;
+    hitmarker.className = `fa-solid fa-x absolute transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-700 text-sm text-red-500`;
     hitmarker.style.left = `${clickX}px`;
     hitmarker.style.top = `${clickY}px`;
     playArea.appendChild(hitmarker);
@@ -47,10 +47,10 @@ function addTarget(){
         // Disable further clicks on this target
         target.style.pointerEvents = 'none';
 
-        //give gray outline
+        //give red outline
         const colorClasses = color.split(' ')
         target.classList.remove(...colorClasses)
-        target.classList.add('border', 'border-white', 'opacity-100', 'dark:border-gray-400')
+        target.classList.add('outline', 'outline-red-500', 'opacity-100')
         //fade out
         target.style.transition = 'opacity 0.5s ease';
         target.style.opacity = '0';

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Accuracy</title>
+    <link href="../../css/main.css" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="96x96" href="../../images/js-favicon.png">
+</head>
+<body class="bg-neutral-900">
+    
+    <!--Navbar-->
+    <div class="h-[60px] px-5 flex justify-between items-center bg-black text-white flex-shrink-0 shadow-xl" id="navbar">
+        <a href="/"><i class="fa-solid fa-house text-2xl text-red-500"></i></a>
+
+        <div class="flex items-center gap-x-6 text-gray-300">
+            <button id="achievements-audio-button" class="hover:text-red-500"></button>
+            <a href="/mouse-accuracy/achievements" id="achievement-link" class="hover:text-red-500"><i class="fa-solid fa-trophy"></i> <span class="font-bold">Achievements</span></a>
+        </div>    
+    </div>
+
+
+    <div class="flex flex-col items-center pb-4 pt-6 px-2 lg:mx-auto gap-y-6 w-full lg:w-1/2">
+        
+        <div class="space-y-2">
+            <div class="flex gap-x-4 items-center"><span class="text-4xl">🏆</span><span class="text-red-500 font-bold text-4xl">Achievements</span></div>
+            <div class="text-gray-400 font-semibold text-lg">Track your progress and unlock rewards</div>
+        </div>
+
+        <div class="flex items-center gap-x-4">
+            <button class="h-[44px] bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white font-semibold rounded-2xl px-5 py-2 transition-transform duration-200 ease-out hover:-translate-y-1 border-y-2 border-y-red-500 border-x-2 border-x-red-600" id="restart-game-btn"><i class="fa-solid fa-rocket mr-3"></i>Start Game</button>
+            <a class="h-[44px] bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700 text-white font-semibold px-5 py-2 rounded-2xl transition-transform duration-200 ease-out hover:-translate-y-1 border-y-gray-500 border-x-2 border-x-gray-600 flex items-center justify-center" href="/mouse-accuracy.html"><i class="fa-solid fa-gear mr-3"></i>Change Settings</a>
+        </div>
+
+        <!--Stats box-->
+        <div class="w-full bg-customDark2 rounded-2xl shadow-lg shadow-black grid grid-cols-2 lg:flex lg:justify-between gap-x-10 py-2 px-2 lg:px-8 text-center text-nowrap">
+            <div class="flex flex-col items-center">
+                <span id="unlocked-num" class="text-4xl font-bold text-red-500">0</span>
+                <span class="font-semibold text-gray-400">UNLOCKED</span>
+            </div>
+
+            <div class="flex flex-col items-center ">
+                <span id="locked-num" class="text-4xl font-bold text-gray-500">0</span>
+                <span class="font-semibold text-gray-400">LOCKED</span>
+            </div>
+
+            <div class="flex flex-col items-center ">
+                <span id="games-played-num" class="text-4xl font-bold text-green-500">0</span>
+                <span class="font-semibold text-gray-400">GAMES PLAYED</span>
+            </div>
+
+            <div class="flex flex-col items-center ">
+                <span id="best-score-num" class="text-4xl font-bold text-yellow-500">0</span>
+                <span class="font-semibold text-gray-400">BEST SCORE</span>
+            </div>
+        </div>
+
+        <!--Unlocked achievements-->
+        <div id="unlocked-title-div" class="space-y-2 w-full">
+            <div  class="w-full flex items-center text-white text-lg gap-x-3"><i class="fa-solid fa-lock-open"></i><span class="font-semibold">Unlocked <span id="unlocked-num-2" class="font-semibold text-gray-400 text-sm"></span></span></div>
+
+            <div id="unlocked-container" class="grid grid-cols-2 gap-4 w-full">
+
+            </div>
+        </div>
+
+        <!--Locked achievements-->
+        <div class="space-y-2 w-full">
+            <div class="w-full flex items-center text-white text-lg gap-x-3"><i class="fa-solid fa-lock"></i><span class="font-semibold">Locked <span id="locked-num-2" class="font-semibold text-gray-400 text-sm"></span></span></div>
+
+            <div id="locked-container" class="grid grid-cols-2 gap-4 w-full">
+                <div id="1" class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">🎯</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">First Steps</div>
+                            <div class="text-gray-400">Complete your first game</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">💯</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Century</div>
+                            <div class="text-gray-400">Score 100 points in a single game</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">🎖️</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Sharpshooter</div>
+                            <div class="text-gray-400">Score 500 points in a single game</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">🎪</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Precision</div>
+                            <div class="text-gray-400">Achieve 90% click accuracy</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">⭐</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Perfection</div>
+                            <div class="text-gray-400">Achieve 100% click accuracy (min 10 clicks)</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">🔥</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Combo Starter</div>
+                            <div class="text-gray-400">Reach a 10x combo</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">💥</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Combo Master</div>
+                            <div class="text-gray-400">Reach a 25x combo</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+                <div class="bg-customDark2 rounded-2xl p-3 flex justify-between gap-x-2 shadow-sm shadow-black opacity-60">
+                    <div class="flex gap-x-2">
+                        <span class="text-3xl">🏆</span>
+                        <div class="flex flex-col">
+                            <div class="text-white font-semibold text-lg">Veteran</div>
+                            <div class="text-gray-400">Play 100 games</div>
+                        </div>
+                    </div>
+                    <span>🔒</span>
+                </div>
+            </div>
+        </div>
+
+        <!--Delete stats button-->
+        <button id="delete-stats-btn" class="bg-red-600 text-white rounded-2xl px-4 py-2 font-semibold shadow-lg shadow-red-500/30 hover:bg-red-500"><i class="fa-solid fa-trash-can mr-2"></i><span>Delete Stats</span></button>
+    </div>
+
+    <div class="border-l-4 border-l-green-500 transition-transform duration-200 ease-out hover:translate-x-1"></div>
+
+    <script type="module" src="../../js/mouse-accuracy/achievements.js"></script>
+    <script src="https://kit.fontawesome.com/d1384d0569.js" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -28,3 +28,81 @@
       transform-origin: left center;
   }
 }
+
+.cursor-custom-crosshair-circle {
+    cursor: url("../images/cursors/cursor-crosshair-circle.png") 16 16, auto;
+}
+
+.cursor-custom-crosshair {
+    cursor: url("../images/cursors/cursor-crosshair.png") 16 16, auto;
+}
+
+.cursor-custom-pointer-alt {
+    cursor: url("../images/cursors/cursor-pointer-alt.png") 16 16, auto;
+}
+
+.cursor-custom-circle-dot {
+    cursor: url("../images/cursors/cursor-circle-dot.png") 16 16, auto;
+}
+
+.cursor-custom-dot {
+    cursor: url("../images/cursors/cursor-dot.png") 16 16, auto;
+}
+
+.cursor-custom-circle {
+    cursor: url("../images/cursors/cursor-circle.png") 16 16, auto;
+}
+
+.cursor-custom-diamond {
+    cursor: url("../images/cursors/cursor-diamond.png") 16 16, auto;
+}
+
+.text-glow {
+    text-shadow:
+        0 0 5px rgba(239, 68, 68, 1),
+        0 0 15px rgba(239, 68, 68, 0.9),
+        0 0 30px rgba(239, 68, 68, 0.8),
+        0 0 60px rgba(239, 68, 68, 0.6);
+}
+
+.countdown-circle {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 60px;
+    height: 60px;
+    border-radius: 9999px;
+    background: transparent;
+    border: 2px solid rgba(239, 68, 68, 0.6);
+    transform: scale(0);
+    animation: expandCircle 1s linear forwards;
+}
+
+@keyframes expandCircle {
+  to {
+    transform: scale(6);
+    opacity: 0;
+  }
+}
+
+.icon-pulse {
+  animation: iconFade 1s ease-out forwards;
+}
+
+@keyframes iconFade {
+  0% {
+    opacity: 0.6;
+    transform: scale(0.98);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.02);
+  }
+}
